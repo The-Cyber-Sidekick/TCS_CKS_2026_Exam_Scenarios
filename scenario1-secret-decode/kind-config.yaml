@@ -1,0 +1,6 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: cks-scenario1
+# Single node. Secrets need nothing beyond a stock cluster.
+nodes:
+  - role: control-plane

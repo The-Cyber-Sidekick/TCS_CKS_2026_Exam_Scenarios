@@ -1,0 +1,20 @@
+# Answer key for part 2: a pod that consumes the billing-api Secret as a read-only volume.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: invoice-runner
+  namespace: billing
+spec:
+  terminationGracePeriodSeconds: 5
+  containers:
+    - name: runner
+      image: busybox:1.36
+      command: ["sh", "-c", "sleep 3600"]
+      volumeMounts:
+        - name: api-creds
+          mountPath: /etc/billing
+          readOnly: true
+  volumes:
+    - name: api-creds
+      secret:
+        secretName: billing-api
