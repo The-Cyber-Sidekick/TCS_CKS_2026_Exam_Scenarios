@@ -34,6 +34,7 @@ You'll need these on your PATH (the scenarios are built/tested on WSL2):
 | 1 | [Decode Kubernetes Secrets, then mount one read-only](scenario1-secret-decode/) | Minimize Microservice Vulnerabilities | Decode two Secret keys into a file, one value per line (minding `base64 -d`'s missing newline), then create a Secret and mount it **read-only** into a pod |
 | 2 | [Pull a user's client certificate out of a kubeconfig](scenario2-kubeconfig-cert/) | Cluster Hardening | List a kubeconfig's contexts, then extract and decode one user's client certificate with `--raw` + jsonpath + `base64 -d`, and see why authentication is not authorization |
 | 3 | [Stop exposing the API server through a NodePort](scenario3-apiserver-nodeport/) | Cluster Setup | Remove `--kubernetes-service-node-port` from the kube-apiserver static pod (backing it up outside the manifests folder), then delete the `kubernetes` Service so the API server recreates it as ClusterIP-only |
+| 4 | [Enforce the baseline Pod Security Standard on a namespace](scenario4-pod-security-baseline/) | Minimize Microservice Vulnerabilities | Preview violations with `kubectl label --dry-run=server`, enforce the `baseline` Pod Security Standard on a namespace, delete the hostPath pod, and pull the ReplicaSet's `FailedCreate` event that explains why it is not recreated |
 
 More scenarios coming — each lives in its own directory with a `README.md` and the scripts
 to set it up, solve it, and tear it down.
