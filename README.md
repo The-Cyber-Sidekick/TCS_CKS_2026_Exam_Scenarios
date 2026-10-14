@@ -35,6 +35,7 @@ You'll need these on your PATH (the scenarios are built/tested on WSL2):
 | 2 | [Pull a user's client certificate out of a kubeconfig](scenario2-kubeconfig-cert/) | Cluster Hardening | List a kubeconfig's contexts, then extract and decode one user's client certificate with `--raw` + jsonpath + `base64 -d`, and see why authentication is not authorization |
 | 3 | [Stop exposing the API server through a NodePort](scenario3-apiserver-nodeport/) | Cluster Setup | Remove `--kubernetes-service-node-port` from the kube-apiserver static pod (backing it up outside the manifests folder), then delete the `kubernetes` Service so the API server recreates it as ClusterIP-only |
 | 4 | [Enforce the baseline Pod Security Standard on a namespace](scenario4-pod-security-baseline/) | Minimize Microservice Vulnerabilities | Preview violations with `kubectl label --dry-run=server`, enforce the `baseline` Pod Security Standard on a namespace, delete the hostPath pod, and pull the ReplicaSet's `FailedCreate` event that explains why it is not recreated |
+| 5 | [Fix CIS benchmark findings with kube-bench](scenario5-kube-bench-cis/) | Cluster Setup | Run kube-bench (`cis-1.12`) per node on a two-node cluster, then fix only the requested findings: kube-scheduler `--profiling=false` in its static pod, kubelet `config.yaml` permissions, and kubelet anonymous auth (restarting the kubelet) |
 
 More scenarios coming — each lives in its own directory with a `README.md` and the scripts
 to set it up, solve it, and tear it down.

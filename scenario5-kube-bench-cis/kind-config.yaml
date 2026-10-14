@@ -1,0 +1,7 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: cks-scenario5
+# Two nodes: kube-bench checks the control plane and the worker separately.
+nodes:
+  - role: control-plane
+  - role: worker
